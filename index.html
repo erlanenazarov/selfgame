@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self Game</title>
+    <link rel="stylesheet" type="text/css" href="public/css/style.css" />
+</head>
+<body>
+    <div class="port-view">
+        <div class="port-carcass">
+            <div class="port-left-top-view"></div>
+            <div class="port-left-bottom-view"></div>
+            <div class="port-decoration"></div>
+            <div class="grid"></div>
+            <div class="sunrise-logo"></div>
+            <div class="table">
+                <ul>
+                    <li><span>Известные личности<br />в сфере IT</span></li>
+                    <li class="md-trigger"><a href="">10</a></li>
+                    <li class="md-trigger"><a href="">20</a></li>
+                    <li class="md-trigger"><a href="">30</a></li>
+                    <li class="md-trigger"><a href="">40</a></li>
+                    <li class="md-trigger"><a href="">50</a></li>
+                </ul>
+                <ul>
+                    <li><span>Операционные<br />Системы</span></li>
+                    <li class="md-trigger"><a href="">10</a></li>
+                    <li class="md-trigger"><a href="">20</a></li>
+                    <li class="md-trigger"><a href="">30</a></li>
+                    <li class="md-trigger"><a href="">40</a></li>
+                    <li class="md-trigger"><a href="">50</a></li>
+                </ul>
+                <ul>
+                    <li><span>Мобильные<br />телефоны</span></li>
+                    <li class="md-trigger"><a href="">10</a></li>
+                    <li class="md-trigger"><a href="">20</a></li>
+                    <li class="md-trigger"><a href="">30</a></li>
+                    <li class="md-trigger"><a href="">40</a></li>
+                    <li class="md-trigger"><a href="">50</a></li>
+                </ul>
+                <ul>
+                    <li><span>Разные<br />факты</span></li>
+                    <li class="md-trigger"><a href="">10</a></li>
+                    <li class="md-trigger"><a href="">20</a></li>
+                    <li class="md-trigger"><a href="">30</a></li>
+                    <li class="md-trigger"><a href="">40</a></li>
+                    <li class="md-trigger"><a href="">50</a></li>
+                </ul>
+                <ul>
+                    <li><span>Логика</span></li>
+                    <li class="md-trigger"><a href="">10</a></li>
+                    <li class="md-trigger"><a href="">20</a></li>
+                    <li class="md-trigger"><a href="">30</a></li>
+                    <li class="md-trigger"><a href="">40</a></li>
+                    <li class="md-trigger"><a href="">50</a></li>
+                </ul>
+            </div>
+            <div class="team-panel" id="team-panel-show">
+                <div class="team-panel-carcass">
+                    <div class="panel-dismiss">X</div>
+                    <div class="panel-delimiter"><img src="public/images/team-panel-delimiter.png" /> </div>
+                    <div class="team-name-side">
+                        <ul>
+                            <li>Фраерок</li>
+                            <li>30</li>
+                        </ul>
+                        <ul>
+                            <li>Фраерок</li>
+                            <li>30</li>
+                        </ul>
+                        <ul>
+                            <li>Фраерок</li>
+                            <li>30</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="show-button">
+            <button type="button" class="sunrise-self-game-buttons" data-target="team-panel" id="team-panel">Команды</button>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-content-carcass">
+                <div class="question-title">"Известные личности в сфере IT" <span>30</span></div>
+                <div class="question-content">итапрнренрвеивенрекнр енрекнкен?</div>
+                <div class="question-answer-show-button">
+                    <a href="#" class="show-answer-button">Показать ответ</a>
+                </div>
+                <div class="question-answer">
+                    итапрнренрвеивенрекнр енрекнкен
+                </div>
+                <div class="question-options">
+                    <a href="#" class="accept-answer">Засчитать</a> <a href="#" class="show-answer-button" id="close-modal">Закрыть</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="public/js/jquery-3.1.1.min.js"></script>
+<script>
+    var team_panel_button = $('#team-panel');
+    var panel = $('#team-panel-show');
+
+    var modal = $('.modal');
+    var modal_content = $('.modal-content');
+
+
+    function ShowTeamPanel() {
+        $(panel).css('display', 'block');
+        $(panel).animate({
+            top: -1
+        }, 500);
+    }
+
+    function HidePanel() {
+        $(panel).animate({
+            top: -1613
+        }, 500, function() {
+            $(panel).css('display', 'none');
+        });
+    }
+
+    function showModal() {
+        HidePanel();
+        $(modal).fadeIn('slow');
+        $(modal_content).animate({
+            top: '50%'
+        }, 500);
+    }
+
+    function hideModal() {
+        $(modal_content).animate({
+            top: -1000
+        }, 500);
+        $(modal).fadeOut('slow');
+    }
+
+    $(document).ready(function() {
+        $(team_panel_button).on('click', function() {
+            ShowTeamPanel();
+        });
+
+        $('.panel-dismiss').on('click', function() {
+            HidePanel();
+        });
+
+        $('.md-trigger').on('click', function(event) {
+            event.preventDefault();
+            showModal();
+        });
+
+        $('#close-modal').on('click', function(event) {
+            event.preventDefault();
+            hideModal();
+        });
+
+        $('.show-answer-button').on('click', function(e) {
+            e.preventDefault();
+             $('.question-answer').fadeIn('slow');
+        });
+
+        $('.accept-answer').on('click', function(e) {
+            e.preventDefault();
+            hideModal();
+            ShowTeamPanel();
+            $('.question-answer').fadeOut('slow');
+        });
+    });
+</script>
